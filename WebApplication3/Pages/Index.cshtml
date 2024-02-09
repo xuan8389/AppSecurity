@@ -1,0 +1,48 @@
+﻿@page
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Identity
+@model IndexModel
+@inject UserManager<IdentityUser> userManager
+
+@{
+    ViewData["Title"] = "Home page";
+
+    var user = await userManager.GetUserAsync(User); // Retrieve user with context
+    if (user != null)
+    {
+        //string encryptedNric = user.PhoneNumber;
+        
+
+
+    }
+    else
+    {
+        //DecryptedNric = user.PhoneNumber;
+
+    }
+    ;
+
+
+}
+
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        <p>Welcome back, @User.Identity.Name!</p>
+       <p id="decrypted">encrypted NRIC: @user.PhoneNumber</p>
+        // ... other code
+
+       <p>Password Hash: @Html.Encode(user.PasswordHash)</p>
+
+    }
+    else
+    {
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    }
+</div>
+
+
